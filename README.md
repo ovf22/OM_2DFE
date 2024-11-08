@@ -1,4 +1,4 @@
-# 2D Finite Element modelling of fiber-reinforced composites with variable fiber volume fractions and fiber orientations
+# Two-dimensional finite element modelling of fiber-reinforced composites with realistic fiber orientation and fiber volume fraction distributions
 
 ## Introduction
 This method covers the process of acquireing material characteristics from 2D images of fiber-reinforced composites. These are subsequently used for a static compression analysis in a Finite Element (FE) model in the commercial FE-software, Abaqus<sup>TM</sup>. The method estimates the Fiber Volume Fraction (FVF) distribution and fiber orientation distribution based on image characteristics, and is used to study the effect on material behavior when loaded in compression. This work is based on a carbon fiber-reinforced Vinyl Ester composite, where images are aquired using optical microscopy of a plane parallel with the global fiber direction. The method is also applicable for other fiber-reinforced material systems and other image acquisition methods capable of capturing images with a clear contrast between constituents. 
