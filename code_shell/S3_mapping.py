@@ -58,18 +58,9 @@ df = pd.DataFrame(ip_indices, columns=['ele_id', 'ip_id'])
 element_max_index = df['ele_id'].max()
 ip_max_index = df['ip_id'].max()
 
-# Set NaN values to zero.
-ip_phi_out = ip_phi.copy()
-ip_phi_out[np.isnan(ip_phi_out)] = 0
-
-ip_fvf_out = ip_fvf.copy()
-ip_fvf_out[np.isnan(ip_fvf_out)] = np.mean(fvf)
-ip_fvf_out[ip_fvf_out < 0.3] = 0.3
-ip_fvf_out[ip_fvf_out > 0.80] = 0.80
-
 # Set phi values.
-df['PHI'] = np.radians(ip_phi_out)
-df['FVF'] = ip_fvf_out
+df['PHI'] = np.radians(ip_phi)
+df['FVF'] = ip_fvf
 
 for column in df.columns[2:]:
     # Open writable file.

@@ -21,6 +21,7 @@ ip_coords, _ = M4IP.load_AbqData(file_name='Out-'+job_name+'_INTCOOR.dat',
 
 pixel_size_mm = PIXEL_SIZE / 1000
 ip_data_coords = ip_coords / pixel_size_mm
+
 # %% Load stress components at integration points
 S_local, _ = M4IP.load_AbqData(file_name='Out-'+job_name+'_S_local.out',
                                start_line='Field Output reported at '
@@ -67,8 +68,6 @@ M4IP.Int_point_plotting2D(data, ip_data_coords, E_local,
                           sp_title=strains)
 
 # %% Plot stress-strain
-
-
 def FuncRange(x, xRange):
     """ Save data from list within a defined range.
 

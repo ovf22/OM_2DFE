@@ -13,7 +13,7 @@ if [ "$Env_installed" = "no" ]; then
 	conda create -n STenv
 	conda activate  STenv
 	conda install pip
-	~/.conda/envs/STenv/bin/pip install numpy matplotlib structure-tensor jupyter pandas opencv-python
+	~/.conda/envs/STenv/bin/pip install numpy matplotlib structure-tensor jupyter pandas opencv-python scikit-learn
 	echo "<> Python environment installed"
 elif [ "$Env_installed" = "yes" ]; then
 	echo "<> Python environment already installed"
@@ -26,9 +26,11 @@ source /usr/local/apps/anaconda3/bin/activate
 conda activate  STenv
 
 # Declare cropping parameters for all datasets in samples_names
-declare -a sample_names=("CFPP_test")
+declare -a sample_names=("CFPP_1")
+
 # Declare cropping parameters for all datasets in samples_names
 crop_samples=([5500, 6350, 1020, 650])
+
 # Declare kernel size parameters for all datasets in samples_names
 kernel_multiplier_FVF=(1)
 
@@ -59,8 +61,8 @@ for sample_name in ${sample_names[@]}; do
 	[ -e *lck ] && rm *lck
 	
 	## Analyse the image images and define model dimensions
-	sed -e "s/shell_sample_name/$sample_name/;s/shell_crop/$crop/;s/shell_kernel/$k_mul/" S1_STanalysis.py > "${sample_name}_S1_STanalysis.py"
-	python3 "${sample_name}_S1_STanalysis.py"
+	sed -e "s/shell_sample_name/$sample_name/;s/shell_crop/$crop/;s/shell_kernel/$k_mul/" S1_FVF_ST.py > "${sample_name}_S1_FVF_ST.py"
+	python3 "${sample_name}_S1_FVF_ST.py"
 	echo "<> CT image has been analysed and model dimensions are exported"
 	
 	## Generate FE-model and export integration points
