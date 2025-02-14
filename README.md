@@ -5,24 +5,24 @@ This method covers the process of acquireing material characteristics from 2D im
 
 ## Installation guide
 
-This program is based on the Anaconda Distribution, where a virtual environment is used for running the analysis. The file S0_main.sh is the main script from where all analysis steps are controlled. This file also contains a function that installes the virtual environment and necessary Python packages. To enable this function set the parameter Env_installed="no". This should only be done the first time the shell script is executed. After installation of the virtual environment, set Env_installed="yes". 
+This program is based on the Anaconda Distribution, where a virtual environment is used for running the analysis. The file S0_main.sh is the main script from where all analyses steps are controlled. This file also contains a function that installs the virtual environment and necessary Python packages. To enable this function set the parameter Env_installed="no". This should only be done the first time the shell script is executed. After installation of the virtual environment, set Env_installed="yes". 
 
 ## Directories and files
 - code
 	* S0_main.sh
 		- Main shell script for running the entire analysis. Datasets for analysis are defined in this script. 
-	* S1_STanalysis.py
+	* S1_FVF_ST.py
 		- Script for estimating fiber volume fractions and material orientations and define FE model dimensions.
 		- Input: 2D image data.
-		- Output: Arrays with FVFs and fiber orientations . (MAP_Var.npz) and FE model dimensions (ImgDim.txt).
+		- Output: Arrays with FVFs and fiber orientations, (MAP_Var.npz), and FE model dimensions (ImgDim.txt).
 	* S2_Box.py
 		- Script for generating FE model with mesh.
 		- Input: Model dimensions (ImgDim.txt).
 		- Output: Integration point coordinates (INTCOOR.dat).
 	* S3_mapping.py
-		- Script for mapping FVFs anf fiber orientations estimated in S1_STanalysis to FE mesh generated in S2_Box.
+		- Script for mapping FVFs anf fiber orientations estimated in S1_FVF_ST.py to FE mesh generated in S2_Box.py.
 		- Input: Material orientation information (MAP_Var.npz) and integration point coordinates (INTCOOR.dat).
-		- Output: Fortran files with orientation information for all integration points.
+		- Output: Fortran files with fiber volume fraction and orientation information for all integration points (FVF.f, PHI.f).
 	* S4_Box_modified.py
 		- Script for updating the FE model with the USDFLD and ORIENT function for loading FVFs and fiber orientation information, rotating local coordinate systems, and running the FE simulation.
 		- Input: Abaqus CAE file generated in S2_Box.py and Fortran files generated in S3_mapping.py
@@ -59,10 +59,13 @@ This program is based on the Anaconda Distribution, where a virtual environment 
 ## Guidelines
 
 - The complete analysis is executed by the shell script S0_main.sh
-	* Define the sample names used for the analysis and set the crop_samples parameter for the tiff file.
+	* Define the sample names used for the analysis
+	* Define the crop_samples parameter for the tiff file
+	* Define the kernel_multiplier used for the FVF estimation
 - Running the individual python scripts without the shell script. 
-	* Change the sample_name from 'shell_sample_name" to the name of the sample, and run the python script. 
-		- Make sure that the imported python modules and data files are available in the working directory.
+	* Change the sample_name from 'shell_sample_name" to the name of the sample
+	* Change the ROI and kernel_multiplier to the desired values (only valid for "S1_STanalysis")
+	* Make sure that the imported python modules and data files are available in the working directory.
 
 ## Example of method
 A precompiled version of this work is presented in a CodeOcean Notebook. This version is independent of Abaqus<sup>TM</sup>.
