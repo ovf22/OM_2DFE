@@ -1,7 +1,7 @@
-# Two-dimensional finite element modelling of fiber-reinforced composites with realistic fiber orientation and fiber volume fraction distributions
+# Two-dimensional finite element modelling of fibre-reinforced composites with realistic fibre orientation and fibre volume fraction distributions
 
 ## Introduction
-This method covers the process of acquireing material characteristics from 2D images of fiber-reinforced composites. These are subsequently used for a static compression analysis in a Finite Element (FE) model in the commercial FE-software, Abaqus<sup>TM</sup>. The method estimates the Fiber Volume Fraction (FVF) distribution and fiber orientation distribution based on image characteristics, and is used to study the effect on material behavior when loaded in compression. This work is based on a carbon fiber-reinforced Vinyl Ester composite, where images are aquired using optical microscopy of a plane parallel with the global fiber direction. The method is also applicable for other fiber-reinforced material systems and other image acquisition methods capable of capturing images with a clear contrast between constituents. 
+This method covers the process of acquireing material characteristics from 2D images of fibre-reinforced composites. These are subsequently used for a static compression analysis in a Finite Element (FE) model in the commercial FE-software, Abaqus<sup>TM</sup>. The method estimates the Fibre Volume Fraction (FVF) distribution and fibre orientation distribution based on image characteristics, and is used to study the effect on material behavior when loaded in compression. This work is based on a carbon fibre-reinforced polymer, where images are aquired using optical microscopy of a plane parallel with the global fibre direction. The method is also applicable for other fibre-reinforced material systems and other image acquisition methods capable of capturing images with a clear contrast between constituents. 
 
 ## Installation guide
 
@@ -12,19 +12,19 @@ This program is based on the Anaconda Distribution, where a virtual environment 
 	* S0_main.sh
 		- Main shell script for running the entire analysis. Datasets for analysis are defined in this script. 
 	* S1_FVF_ST.py
-		- Script for estimating fiber volume fractions and material orientations and define FE model dimensions.
+		- Script for estimating fibre volume fractions and material orientations and define FE model dimensions.
 		- Input: 2D image data.
-		- Output: Arrays with FVFs and fiber orientations, (MAP_Var.npz), and FE model dimensions (ImgDim.txt).
+		- Output: Arrays with FVFs and fibre orientations, (MAP_Var.npz), and FE model dimensions (ImgDim.txt).
 	* S2_Box.py
 		- Script for generating FE model with mesh.
 		- Input: Model dimensions (ImgDim.txt).
 		- Output: Integration point coordinates (INTCOOR.dat).
 	* S3_mapping.py
-		- Script for mapping FVFs anf fiber orientations estimated in S1_FVF_ST.py to FE mesh generated in S2_Box.py.
+		- Script for mapping FVFs anf fibre orientations estimated in S1_FVF_ST.py to FE mesh generated in S2_Box.py.
 		- Input: Material orientation information (MAP_Var.npz) and integration point coordinates (INTCOOR.dat).
-		- Output: Fortran files with fiber volume fraction and orientation information for all integration points (FVF.f, PHI.f).
+		- Output: Fortran files with fibre volume fraction and orientation information for all integration points (FVF.f, PHI.f).
 	* S4_Box_modified.py
-		- Script for updating the FE model with the USDFLD and ORIENT function for loading FVFs and fiber orientation information, rotating local coordinate systems, and running the FE simulation.
+		- Script for updating the FE model with the USDFLD and ORIENT function for loading FVFs and fibre orientation information, rotating local coordinate systems, and running the FE simulation.
 		- Input: Abaqus CAE file generated in S2_Box.py and Fortran files generated in S3_mapping.py
 		- Output: Field and history output for post processing. CAE and ODB files for post-processing in Abaqus.
 	* S5_PostProcessing.py
@@ -48,7 +48,7 @@ This program is based on the Anaconda Distribution, where a virtual environment 
 		
 - data
 	* CFPP.tif
-		- Tiff file of optical microscopy image from carbon fiber-reinforced Vinyl Ester pultruded profile.
+		- Tiff file of optical microscopy image from carbon fibre-reinforced pultruded profile.
 	
 - results
 	* Empty by default. 
