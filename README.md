@@ -64,7 +64,7 @@ This program is based on the Anaconda Distribution, where a virtual environment 
 	* Define the kernel_multiplier used for the FVF estimation
 - Running the individual python scripts without the shell script. 
 	* Change the sample_name from 'shell_sample_name" to the name of the sample
-	* Change the ROI and kernel_multiplier to the desired values (only valid for "S1_STanalysis")
+	* Change the ROI and kernel_multiplier to the desired values (only valid for "S1_FVF_ST")
 	* Make sure that the imported python modules and data files are available in the working directory.
 
 ## Example of method
